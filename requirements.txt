@@ -4,5 +4,9 @@ langchain
 PyPDF2
 faiss-cpu
 streamlit
+unstructured
+pinecone-client
+huggingface_hub
+sentence_transformers
 llama-cpp-python
 -e .
