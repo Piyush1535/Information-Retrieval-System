@@ -9,4 +9,5 @@ pinecone-client
 huggingface_hub
 sentence_transformers
 llama-cpp-python
+langchain-community
 -e .
