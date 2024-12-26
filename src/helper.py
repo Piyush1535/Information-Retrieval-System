@@ -1,11 +1,11 @@
 import os
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceBgeEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 from llama_cpp import Llama
 from langchain.vectorstores import FAISS
 from langchain.chains import ConversationalRetrievalChain
-from langchain.memory import ConversationaBufferMemory
+from langchain.memory import ConversationBufferMemory
 from langchain.chains.question_answering import load_qa_chain
 from dotenv import load_dotenv
 
@@ -27,12 +27,12 @@ def get_text_chunks(text):
     return chunks
 
 def get_vector_store(text_chunks):
-    embeddings = HuggingFaceBgeEmbeddings()
+    embeddings = HuggingFaceEmbeddings()
     vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
     return vector_store
 
 def get_conversational_chain(vector_store):
     llm = Llama(model_path="./models/7B/llama-model.gguf")
-    memory = ConversationaBufferMemory(memory_key = "chat_history", return_message = True)
+    memory = ConversationBufferMemory(memory_key = "chat_history", return_message = True)
     conversation_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever = vector_store.as_retriever(), memory = memory)
     return conversation_chain

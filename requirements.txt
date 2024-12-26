@@ -7,7 +7,7 @@ streamlit
 unstructured
 pinecone-client
 huggingface_hub
-sentence_transformers
+sentence-transformers
 llama-cpp-python
 langchain-community
 -e .

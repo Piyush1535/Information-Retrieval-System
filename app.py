@@ -27,7 +27,7 @@ def main():
         pdf_upload = st.file_uploader("Upload your PDF files", accept_multiple_files=True)
         if st.button("Submit"):
             with st.spinner("Processing..."):
-                raw_text = get_pdf_text(pdf_docs)
+                raw_text = get_pdf_text(pdf_upload)
                 text_chunks = get_text_chunks(raw_text)
                 vector_store = get_vector_store(text_chunks)
                 st.session_state.conversation = get_conversational_chain(vector_store)
